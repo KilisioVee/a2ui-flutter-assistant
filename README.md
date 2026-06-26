@@ -1,16 +1,28 @@
-# restaurant_finder
+# Nairobi GenUI Restaurant Finder
 
-A new Flutter project.
+This version is rewritten against the current `genui` package API documented on pub.dev and Flutter docs.
 
-## Getting Started
+## Current API used
+- `genui: ^0.9.2`
+- `SurfaceController(catalogs: [CoreCatalogItems.asCatalog()])`
+- `A2uiTransportAdapter(onSend: ...)`
+- `Conversation(controller: ..., transport: ...)`
+- `Surface(host: _conversation.host, surfaceId: id)`
+- `ChatMessage.user(text)`
 
-This project is a starting point for a Flutter application.
+## How it works
+This app uses a local mock A2UI sender instead of a real remote model. When the user enters a restaurant query, the app builds A2UI messages in JSON text, streams them into `A2uiTransportAdapter.addChunk()`, and lets GenUI render the resulting surfaces.
 
-A few resources to get you started if this is your first Flutter project:
+That means it uses the real current GenUI runtime API, but still requires no API key.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Run
+```bash
+flutter pub get
+flutter run
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Example queries
+- `Ethiopian`
+- `Westlands`
+- `Coffee in CBD`
+- `Pizza`
